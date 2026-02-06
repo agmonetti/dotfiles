@@ -1,0 +1,12 @@
+openbar@neuromorph
+search-light@icedman.github.com
+emoji-copy@felipeftn
+pomodoro@youcefzaid.github.io
+appnameindicator@dev64.xyz
+apps-menu@gnome-shell-extensions.gcampax.github.com
+auto-move-windows@gnome-shell-extensions.gcampax.github.com
+drive-menu@gnome-shell-extensions.gcampax.github.com
+native-window-placement@gnome-shell-extensions.gcampax.github.com
+places-menu@gnome-shell-extensions.gcampax.github.com
+user-theme@gnome-shell-extensions.gcampax.github.com
+workspace-indicator@gnome-shell-extensions.gcampax.github.com

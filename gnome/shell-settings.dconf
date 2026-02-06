@@ -1,0 +1,323 @@
+[/]
+app-picker-layout=[{'org.kde.dolphin.desktop': <{'position': <0>}>, 'org.gnome.Contacts.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'org.gnome.Music.desktop': <{'position': <5>}>, 'org.gnome.SimpleScan.desktop': <{'position': <6>}>, 'org.gnome.Settings.desktop': <{'position': <7>}>, 'bssh.desktop': <{'position': <8>}>, 'org.gnome.Showtime.desktop': <{'position': <9>}>, 'org.gnome.Snapshot.desktop': <{'position': <10>}>, 'org.gnome.Characters.desktop': <{'position': <11>}>, 'Utilities': <{'position': <12>}>, 'System': <{'position': <13>}>, 'org.gnome.Console.desktop': <{'position': <14>}>, 'org.gnome.Tour.desktop': <{'position': <15>}>, 'org.gnome.Yelp.desktop': <{'position': <16>}>, 'bvnc.desktop': <{'position': <17>}>, 'org.gnome.Extensions.desktop': <{'position': <18>}>, 'com.mattjakeman.ExtensionManager.desktop': <{'position': <19>}>, 'htop.desktop': <{'position': <20>}>, 'kitty.desktop': <{'position': <21>}>, 'avahi-discover.desktop': <{'position': <22>}>}, {'qv4l2.desktop': <{'position': <0>}>, 'qvidcap.desktop': <{'position': <1>}>, 'uuctl.desktop': <{'position': <2>}>, 'vim.desktop': <{'position': <3>}>, 'org.gnome.Evince.desktop': <{'position': <4>}>, 'org.gnome.Epiphany.desktop': <{'position': <5>}>, 'org.gnome.Calendar.desktop': <{'position': <6>}>}]
+command-history=['r']
+disable-user-extensions=false
+disabled-extensions=['launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'forge@jmmaranan.com', 'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'window-list@gnome-shell-extensions.gcampax.github.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'system-monitor-indicator@mknap.com', 'bluetooth-quick-connect@bjarosze.gmail.com', 'all-windows@ezix.org']
+enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'native-window-placement@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'openbar@neuromorph', 'search-light@icedman.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'pomodoro@youcefzaid.github.io', 'switcher@landau.fi', 'advanced-alt-tab@G-dH.github.com', 'dock-ng@ochi12.github.com', 'appnameindicator@dev64.xyz', 'dock-express@fthx', 'dock-from-dash@fthx', 'ssm-gnome@lgiki.net', 'emoji-copy@felipeftn', 'smile-extension@mijorus.it', 'blur-my-shell@aunetx', 'dash-to-dock@micxgx.gmail.com']
+favorite-apps=['com.google.Chrome.desktop', 'org.kde.dolphin.desktop', 'com.visualstudio.code.desktop', 'com.github.IsmaelMartinez.teams_for_linux.desktop', 'idea.desktop', 'org.eclipse.Java.desktop']
+welcome-dialog-last-shown-version='49.1'
+
+[extensions/advanced-alt-tab-window-switcher]
+switcher-popup-show-if-no-win=false
+switcher-popup-start-search=false
+switcher-ws-thumbnails=0
+
+[extensions/appnameindicator]
+show-icon=true
+show-text=false
+
+[extensions/auto-move-windows]
+application-list=['com.github.IsmaelMartinez.teams_for_linux.desktop:2']
+
+[extensions/bluetooth-quick-connect]
+bluetooth-auto-power-off=true
+
+[extensions/blur-my-shell]
+pipelines={'pipeline_default': {'name': <'Default'>, 'effects': <[<{'type': <'native_static_gaussian_blur'>, 'id': <'effect_000000000000'>, 'params': <{'radius': <30>, 'brightness': <0.59999999999999998>}>}>]>}, 'pipeline_default_rounded': {'name': <'Default rounded'>, 'effects': <[<{'type': <'native_static_gaussian_blur'>, 'id': <'effect_000000000001'>, 'params': <{'radius': <30>, 'brightness': <1>}>}>, <{'type': <'corner'>, 'id': <'effect_000000000002'>, 'params': <{'radius': <28>}>}>]>}}
+settings-version=2
+
+[extensions/blur-my-shell/appfolder]
+brightness=1.0
+sigma=30
+style-dialogs=2
+
+[extensions/blur-my-shell/applications]
+blur=true
+dynamic-opacity=false
+enable-all=true
+opacity=255
+sigma=50
+
+[extensions/blur-my-shell/coverflow-alt-tab]
+pipeline='pipeline_default'
+
+[extensions/blur-my-shell/dash-to-dock]
+blur=true
+brightness=0.59999999999999998
+override-background=false
+pipeline='pipeline_default_rounded'
+sigma=30
+static-blur=true
+style-dash-to-dock=0
+unblur-in-overview=true
+
+[extensions/blur-my-shell/lockscreen]
+pipeline='pipeline_default'
+
+[extensions/blur-my-shell/overview]
+pipeline='pipeline_default'
+style-components=0
+
+[extensions/blur-my-shell/panel]
+brightness=0.59999999999999998
+pipeline='pipeline_default'
+sigma=30
+
+[extensions/blur-my-shell/screenshot]
+pipeline='pipeline_default'
+
+[extensions/blur-my-shell/window-list]
+brightness=0.59999999999999998
+sigma=30
+
+[extensions/emoji-copy]
+always-show=false
+recently-used=['✅', '📜', '✉️', '🕹️', '💰', '🏷️', '⏲️', '🔍', '🔎', '🔥', '💧']
+
+[extensions/forge]
+css-last-update=uint32 37
+window-gap-hidden-on-single=true
+window-gap-size=uint32 1
+
+[extensions/forge/keybindings]
+con-split-horizontal=['<Super>z']
+con-split-layout-toggle=['<Super>g']
+con-split-vertical=['<Super>v']
+con-stacked-layout-toggle=['<Shift><Super>s']
+con-tabbed-layout-toggle=['<Shift><Super>t']
+con-tabbed-showtab-decoration-toggle=['<Control><Alt>y']
+focus-border-toggle=['<Super>x']
+prefs-tiling-toggle=['<Super>w']
+window-focus-down=['<Super>j']
+window-focus-left=['<Super>h']
+window-focus-right=['<Super>l']
+window-focus-up=['<Super>k']
+window-gap-size-decrease=['<Control><Super>minus']
+window-gap-size-increase=['<Control><Super>plus']
+window-move-down=['<Shift><Super>j']
+window-move-left=['<Shift><Super>h']
+window-move-right=['<Shift><Super>l']
+window-move-up=['<Shift><Super>k']
+window-resize-bottom-decrease=['<Shift><Control><Super>i']
+window-resize-bottom-increase=['<Control><Super>u']
+window-resize-left-decrease=['<Shift><Control><Super>o']
+window-resize-left-increase=['<Control><Super>y']
+window-resize-right-decrease=['<Shift><Control><Super>y']
+window-resize-right-increase=['<Control><Super>o']
+window-resize-top-decrease=['<Shift><Control><Super>u']
+window-resize-top-increase=['<Control><Super>i']
+window-snap-center=['<Control><Alt>c']
+window-snap-one-third-left=['<Control><Alt>d']
+window-snap-one-third-right=['<Control><Alt>g']
+window-snap-two-third-left=['<Control><Alt>e']
+window-snap-two-third-right=['<Control><Alt>t']
+window-swap-down=['<Control><Super>j']
+window-swap-last-active=['<Super>Return']
+window-swap-left=['<Control><Super>h']
+window-swap-right=['<Control><Super>l']
+window-swap-up=['<Control><Super>k']
+window-toggle-always-float=['<Shift><Super>c']
+window-toggle-float=['<Super>c']
+workspace-active-tile-toggle=['<Shift><Super>w']
+
+[extensions/openbar]
+accent-color=['0', '0.75', '0.75']
+accent-override=true
+auto-bgalpha=false
+autofg-bar=false
+autofg-menu=true
+autohg-bar=true
+autohg-menu=true
+autotheme-dark='Dark'
+autotheme-font=false
+autotheme-refresh=false
+balpha=0.37
+bartype='Mainland'
+bcolor=['0.102', '0.373', '0.706']
+bg-change=true
+bgalpha=0.0
+bgalpha-wmax=1.0
+bgcolor=['0.090', '0.090', '0.090']
+bgcolor-wmax=['0.118', '0.118', '0.118']
+bgcolor2=['0.278', '0.282', '0.290']
+bguri='file:///home/agusvtwo/.config/background'
+bottom-margin=0.0
+boxalpha=0.0
+boxcolor=['0.090', '0.090', '0.090']
+bradius=50.0
+bwidth=0.0
+candy1=['0.110', '0.443', '0.847']
+candybar=false
+color-scheme='prefer-dark'
+count1=237734
+count10=190
+count11=71
+count12=12
+count2=108940
+count3=82979
+count4=39942
+count5=32977
+count6=30790
+count7=15084
+count8=10127
+count9=3027
+cust-margin-wmax=false
+dark-bcolor=['0.102', '0.373', '0.706']
+dark-bgcolor=['0.090', '0.090', '0.090']
+dark-bgcolor-wmax=['0.118', '0.118', '0.118']
+dark-bgcolor2=['0.278', '0.282', '0.290']
+dark-bguri='file:///home/agusvtwo/.config/background'
+dark-boxcolor=['0.090', '0.090', '0.090']
+dark-candy1=['0.110', '0.443', '0.847']
+dark-fgcolor=['0.000', '0.000', '0.000']
+dark-hcolor=['0.000', '0.000', '0.000']
+dark-hscd-color=['0.106', '0.745', '0.745']
+dark-iscolor=['0.090', '0.090', '0.090']
+dark-mbcolor=['0.361', '0.392', '0.392']
+dark-mbgcolor=['0.125', '0.125', '0.125']
+dark-mhcolor=['0.361', '0.392', '0.392']
+dark-mscolor=['0.106', '0.745', '0.745']
+dark-mshcolor=['0.000', '0.000', '0.000']
+dark-palette1=['113', '145', '172']
+dark-palette10=['83', '99', '124']
+dark-palette11=['52', '68', '86']
+dark-palette12=['50', '60', '84']
+dark-palette2=['217', '228', '221']
+dark-palette3=['30', '35', '48']
+dark-palette4=['167', '179', '171']
+dark-palette5=['102', '98', '65']
+dark-palette6=['125', '128', '103']
+dark-palette7=['177', '205', '225']
+dark-palette8=['167', '192', '225']
+dark-palette9=['188', '164', '147']
+dark-shcolor=['0.000', '0.000', '0.000']
+dark-smbgcolor=['0.278', '0.282', '0.290']
+dark-vw-color=['0.106', '0.745', '0.745']
+dark-winbcolor=['0.106', '0.745', '0.745']
+default-font='Sans 12'
+fgalpha=1.0
+fgcolor=['0.000', '0.000', '0.000']
+font='Inter Medium 10'
+gradient=false
+halpha=0.40999999999999998
+hcolor=['0.000', '0.000', '0.000']
+heffect=false
+height=30.0
+hscd-color=['0.106', '0.745', '0.745']
+import-export=false
+isalpha=0.0
+iscolor=['0.090', '0.090', '0.090']
+light-bguri='file:///home/agusvtwo/.config/background'
+light-palette1=['113', '145', '172']
+light-palette10=['83', '99', '124']
+light-palette11=['52', '68', '86']
+light-palette12=['50', '60', '84']
+light-palette2=['217', '228', '221']
+light-palette3=['30', '35', '48']
+light-palette4=['167', '179', '171']
+light-palette5=['102', '98', '65']
+light-palette6=['125', '128', '103']
+light-palette7=['177', '205', '225']
+light-palette8=['167', '192', '225']
+light-palette9=['188', '164', '147']
+margin=0.0
+margin-wmax=30.0
+mbcolor=['0.361', '0.392', '0.392']
+mbgcolor=['0.125', '0.125', '0.125']
+menustyle=true
+mfgalpha=1.0
+mfgcolor=['1.0', '1.0', '1.0']
+mhcolor=['0.361', '0.392', '0.392']
+monitor-height=864
+monitor-width=1536
+mscolor=['0.106', '0.745', '0.745']
+mshcolor=['0.000', '0.000', '0.000']
+neon=false
+palette1=['113', '145', '172']
+palette10=['83', '99', '124']
+palette11=['52', '68', '86']
+palette12=['50', '60', '84']
+palette2=['217', '228', '221']
+palette3=['30', '35', '48']
+palette4=['167', '179', '171']
+palette5=['102', '98', '65']
+palette6=['125', '128', '103']
+palette7=['177', '205', '225']
+palette8=['167', '192', '225']
+palette9=['188', '164', '147']
+pause-reload=false
+position='Top'
+reloadstyle=false
+set-bottom-margin=false
+set-overview=false
+shadow=false
+shcolor=['0.000', '0.000', '0.000']
+smbgcolor=['0.278', '0.282', '0.290']
+smbgoverride=false
+trigger-autotheme=false
+trigger-reload=true
+vw-color=['0.106', '0.745', '0.745']
+winbcolor=['0.106', '0.745', '0.745']
+wmax-hbarhint=false
+wmaxbar=false
+
+[extensions/search-light]
+animation-speed=100.0
+background-color=(0.73000001907348633, 0.71053338050842285, 0.71053338050842285, 0.28333333134651184)
+blur-background=true
+blur-brightness=0.59999999999999998
+blur-sigma=30.0
+border-radius=7.0
+border-thickness=2
+entry-font-size=0
+monitor-count=1
+popup-at-cursor-monitor=true
+preferred-monitor=0
+scale-height=0.34999999999999998
+scale-width=0.20000000000000001
+shortcut-search=['<Control>space']
+show-panel-icon=false
+text-color=(1.0, 1.0, 1.0, 1.0)
+window-effect=0
+
+[extensions/simple-system-monitor]
+cpu-usage-text='U'
+download-speed-text='↓'
+extension-position='right'
+font-weight=700
+is-cpu-usage-enable=true
+is-download-speed-enable=true
+is-memory-usage-enable=true
+is-upload-speed-enable=true
+item-separator=' '
+memory-usage-text='M'
+refresh-interval=1
+show-extra-spaces=true
+show-full-net-speed-unit=true
+show-percent-sign=true
+swap-usage-text='S'
+upload-speed-text='↑'
+
+[extensions/switcher]
+activate-by-key=uint32 0
+activate-immediately=false
+font-size=uint32 15
+icon-size=uint32 15
+max-width-percentage=uint32 40
+on-active-display=false
+only-current-workspace=true
+show-switcher=['<Alt>v']
+workspace-indicator=true
+
+[extensions/user-theme]
+name='MacTahoe-Dark'
+
+[extensions/workspace-indicator]
+embed-previews=true
+
+[weather]
+automatic-location=true
+locations=[<(uint32 2, <('Buenos Aires', 'SADP', true, [(-0.60388392119003798, -1.0227629416686772)], [(-0.6036657550335387, -1.024028305376373)])>)>]
+
+[world-clocks]
+locations=[<(uint32 2, <('Buenos Aires', 'SADP', true, [(-0.60388392119003798, -1.0227629416686772)], [(-0.6036657550335387, -1.024028305376373)])>)>]
