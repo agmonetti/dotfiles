@@ -1,0 +1,14 @@
+[custom0]
+binding='<Control><Alt>t'
+command='kgx'
+name='warp'
+
+[custom1]
+binding='<Super>i'
+command='gnome-control-center\n'
+name='cdg'
+
+[custom2]
+binding=''
+command='mostrar-escritorio'
+name='dek'

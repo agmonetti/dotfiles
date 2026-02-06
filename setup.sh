@@ -1,53 +1,97 @@
 #!/bin/bash
 
-# --- 1. PREPARACIÓN ---
-echo "Iniciando configuración de Dotfiles..."
+# --- VARIABLES Y COLORES ---
+# Colores ANSI para legibilidad sin ser estridentes
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+DOTFILES_DIR="$HOME/dotfiles"
 
-# Asegurarse de estar en la carpeta correcta
-cd ~/dotfiles
+echo -e "${BLUE}[INFO] Iniciando configuracion de Dotfiles...${NC}"
 
-# Instalar dependencias básicas si no están
-echo "Instalando git y stow..."
-sudo pacman -S --needed git stow
+# Solicitar permisos de sudo al inicio
+sudo -v
 
-# --- 2. ENLACES SIMBÓLICOS (STOW) ---
-echo "Enlazando configuraciones..."
-# Borra el .bashrc por defecto que crea Arch para evitar conflictos
-rm -f ~/.bashrc 
+# --- 1. DEPENDENCIAS ---
+echo -e "${BLUE}[1/5] Verificando dependencias...${NC}"
+cd "$DOTFILES_DIR"
+if ! command -v stow &> /dev/null; then
+    sudo pacman -S --needed --noconfirm git stow
+fi
 
-# Ejecuta Stow para las carpetas que creamos
+# --- 2. STOW (Configs de usuario) ---
+echo -e "${BLUE}[2/5] Enlazando archivos de configuracion...${NC}"
+
+# Backup preventivo de bashrc si existe y no es enlace
+if [ -f ~/.bashrc ] && [ ! -L ~/.bashrc ]; then
+    mv ~/.bashrc ~/.bashrc.bak
+    echo "  -> .bashrc existente respaldado como .bashrc.bak"
+fi
+
 stow bash
 stow git
-# stow ssh (Descomenta si creaste la carpeta ssh, si no, déjalo así)
+# stow nvim (Descomentar si es necesario)
 
-echo "Archivos enlazados."
+echo -e "${GREEN}  [OK] Enlaces creados.${NC}"
 
-# --- 3. RESTAURAR GNOME (DCONF) ---
-echo "Restaurando configuración de GNOME..."
+# --- 3. ASSETS (Wallpapers) ---
+echo -e "${BLUE}[3/5] Copiando recursos graficos...${NC}"
+mkdir -p ~/Pictures/Wallpapers
 
-# Verificar si los archivos existen antes de intentar cargarlos
-if [ -f "gnome/desktop-settings.dconf" ]; then
-    dconf load /org/gnome/desktop/ < gnome/desktop-settings.dconf
-fi
-
-if [ -f "gnome/shell-settings.dconf" ]; then
-    dconf load /org/gnome/shell/ < gnome/shell-settings.dconf
-fi
-
-if [ -f "gnome/mutter-settings.dconf" ]; then
-    dconf load /org/gnome/mutter/ < gnome/mutter-settings.dconf
-fi
-
-
-echo "GNOME configurado."
-
-# --- 4. RECORDATORIO DE EXTENSIONES ---
-echo "Instalar estas extensiones :"
-if [ -f "gnome/extensions-list.txt" ]; then
-    cat gnome/extensions-list.txt
+if [ -d "$DOTFILES_DIR/assets/wallpapers" ]; then
+    cp -r "$DOTFILES_DIR/assets/wallpapers/"* ~/Pictures/Wallpapers/
+    echo "  -> Wallpapers copiados a ~/Pictures/Wallpapers"
 else
-    echo "   (No se encontró lista de extensiones)"
+    echo -e "${RED}  [!] No se encontro la carpeta assets/wallpapers${NC}"
 fi
 
-# --- 5. FIN ---
-echo " reiniciar sesión para ver todos los cambios."
+# --- 4. GNOME (Dconf) ---
+echo -e "${BLUE}[4/5] Restaurando configuracion de GNOME...${NC}"
+
+load_dconf() {
+    if [ -f "$1" ]; then
+        dconf load "$2" < "$1"
+        echo "  -> Cargado: $(basename $1)"
+    else
+        echo -e "${RED}  [!] Archivo no encontrado: $(basename $1)${NC}"
+    fi
+}
+
+load_dconf "gnome/desktop-settings.dconf" "/org/gnome/desktop/"
+load_dconf "gnome/shell-settings.dconf" "/org/gnome/shell/"
+load_dconf "gnome/mutter-settings.dconf" "/org/gnome/mutter/"
+load_dconf "gnome/custom-shortcuts.dconf" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/" 
+
+# --- 5. GRUB (System) ---
+echo -e "${BLUE}[5/5] Configurando tema de GRUB...${NC}"
+GRUB_THEME_DIR="$DOTFILES_DIR/assets/grub"
+
+if [ -d "$GRUB_THEME_DIR" ] && [ "$(ls -A $GRUB_THEME_DIR)" ]; then
+    THEME_NAME=$(ls "$GRUB_THEME_DIR" | head -1)
+    TARGET_THEME="/boot/grub/themes/$THEME_NAME"
+    
+    echo "  -> Tema detectado: $THEME_NAME"
+    
+    sudo mkdir -p /boot/grub/themes
+    sudo cp -r "$GRUB_THEME_DIR/$THEME_NAME" /boot/grub/themes/
+    
+    # Configuracion segura de /etc/default/grub
+    # 1. Comenta cualquier configuracion previa de tema
+    sudo sed -i '/^GRUB_THEME=/s/^/#/' /etc/default/grub
+    
+    # 2. Agrega la nueva configuracion si no existe
+    if ! grep -q "GRUB_THEME=\"$TARGET_THEME/theme.txt\"" /etc/default/grub; then
+        echo "GRUB_THEME=\"$TARGET_THEME/theme.txt\"" | sudo tee -a /etc/default/grub > /dev/null
+    fi
+    
+    echo "  -> Regenerando grub.cfg..."
+    sudo grub-mkconfig -o /boot/grub/grub.cfg &> /dev/null
+    echo -e "${GREEN}  [OK] Tema de GRUB aplicado.${NC}"
+else
+    echo "  [i] No se detectaron temas de GRUB en assets/grub. Omitiendo."
+fi
+
+# --- FINALIZAR ---
+echo -e "\n${GREEN}[FIN] Instalacion completada correctamente.${NC}"
+echo "Recuerda instalar manualmente las extensiones listadas en gnome/extensions-list.txt"
