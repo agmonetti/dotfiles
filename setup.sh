@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # --- VARIABLES Y COLORES ---
 # Colores ANSI para legibilidad sin ser estridentes
@@ -7,6 +8,7 @@ BLUE='\033[0;34m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 DOTFILES_DIR="$HOME/dotfiles"
+CURRENT_USER="$(whoami)"
 
 echo -e "${BLUE}[INFO] Iniciando configuracion de Dotfiles...${NC}"
 
@@ -50,24 +52,28 @@ fi
 echo -e "${BLUE}[4/5] Restaurando configuracion de GNOME...${NC}"
 
 load_dconf() {
-    if [ -f "$1" ]; then
-        dconf load "$2" < "$1"
-        echo "  -> Cargado: $(basename $1)"
+    local file="$1"
+    local dconf_path="$2"
+    if [ -f "$file" ]; then
+        # Reemplazar usuario hardcodeado por el actual antes de cargar
+        sed "s/agusvtwo/$CURRENT_USER/g" "$file" | dconf load "$dconf_path"
+        echo "  -> Cargado: $(basename "$file") (usuario: $CURRENT_USER)"
     else
-        echo -e "${RED}  [!] Archivo no encontrado: $(basename $1)${NC}"
+        echo -e "${RED}  [!] Archivo no encontrado: $(basename "$file")${NC}"
     fi
 }
 
 load_dconf "gnome/desktop-settings.dconf" "/org/gnome/desktop/"
 load_dconf "gnome/shell-settings.dconf" "/org/gnome/shell/"
 load_dconf "gnome/mutter-settings.dconf" "/org/gnome/mutter/"
-load_dconf "gnome/custom-shortcuts.dconf" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/" 
+load_dconf "gnome/custom-shortcuts.dconf" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/"
+load_dconf "gnome-terminal/console.dconf" "/org/gnome/Console/"
 
 # --- 5. GRUB (System) ---
 echo -e "${BLUE}[5/5] Configurando tema de GRUB...${NC}"
 GRUB_THEME_DIR="$DOTFILES_DIR/assets/grub"
 
-if [ -d "$GRUB_THEME_DIR" ] && [ "$(ls -A $GRUB_THEME_DIR)" ]; then
+if [ -d "$GRUB_THEME_DIR" ] && [ "$(ls -A "$GRUB_THEME_DIR")" ]; then
     THEME_NAME=$(ls "$GRUB_THEME_DIR" | head -1)
     TARGET_THEME="/boot/grub/themes/$THEME_NAME"
     
