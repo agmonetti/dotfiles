@@ -1,3 +1,40 @@
-.DS_Store
-*.log
+# --- Secretos y credenciales ---
 .bash_secrets
+.env
+.env.*
+**/secrets/
+*.pem
+*.key
+
+# --- Archivos de sistema ---
+.DS_Store
+Thumbs.db
+.directory
+*~
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# --- Logs ---
+*.log
+nohup.out
+
+# --- Editores ---
+.vscode/
+.idea/
+*.code-workspace
+
+# --- Node / NVM ---
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# --- Cache y compilados ---
+__pycache__/
+*.pyc
+.cache/
+
+# --- Stow internos ---
+# Si stow genera conflictos, los archivos de respaldo van aquí
+*.stow-backup
