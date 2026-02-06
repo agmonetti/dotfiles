@@ -14,7 +14,7 @@
 1. **Clonar el repo**
 
    ```bash
-   git clone https://github.com/TU_USUARIO/dotfiles.git ~/dotfiles
+   git clone https://github.com/agmonetti/dotfiles.git ~/dotfiles
    cd ~/dotfiles
    ```
 
