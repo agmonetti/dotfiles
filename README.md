@@ -26,6 +26,9 @@
 
 ---
 
+## Iconos:
+ - We10X-special
+
 ## Mas adelante
 
 * [ ] Implementar instalación automática de software en `setup.sh`:
