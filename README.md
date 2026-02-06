@@ -14,20 +14,22 @@
 1. **Clonar el repo**
 
    ```bash
-   git clone https://github.com/agmonetti/dotfiles.git ~/dotfiles
+   sudo pacman -S --needed git base-devel
+   git clone [https://github.com/TU_USUARIO/dotfiles.git](https://github.com/TU_USUARIO/dotfiles.git) ~/dotfiles
    cd ~/dotfiles
-   ```
-
-2. **Ejecutar el script de instalación**
-
-   ```bash
+   chmod +x setup.sh
    ./setup.sh
-   ```
 
 ---
 
-## Iconos:
- - We10X-special
+## Detalles:
+ - **Iconos**:We10X-special
+ - **GRUB**: 
+   - nano /etc/default/grub
+   - remplazar linea GRUB_THEME="../.../.../theme.txt"
+
+
+
 
 ## Mas adelante
 
