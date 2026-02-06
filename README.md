@@ -15,7 +15,7 @@
 
    ```bash
    sudo pacman -S --needed git base-devel
-   git clone [https://github.com/TU_USUARIO/dotfiles.git](https://github.com/TU_USUARIO/dotfiles.git) ~/dotfiles
+   git clone [https://github.com/agmonetti/dotfiles.git](https://github.com/agmonetti/dotfiles.git) ~/dotfiles
    cd ~/dotfiles
    chmod +x setup.sh
    ./setup.sh
