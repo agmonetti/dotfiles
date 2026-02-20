@@ -1,7 +1,7 @@
 [custom0]
 binding='<Control><Alt>t'
-command='kgx'
-name='warp'
+command='kitty'
+name='kitty'
 
 [custom1]
 binding='<Super>i'
@@ -12,3 +12,8 @@ name='cdg'
 binding=''
 command='mostrar-escritorio'
 name='dek'
+
+[custom3]
+binding='<Super>e'
+command='dolphin'
+name='dolpghin'
