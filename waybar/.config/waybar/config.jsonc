@@ -1,0 +1,131 @@
+{
+  // ======================================================
+  // BAR SETTINGS
+  // ======================================================
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "spacing": 0,
+  "height": 26,
+
+  // ======================================================
+  // MODULE PLACEMENT
+  // ======================================================
+  "modules-left": [
+     "hyprland/workspaces",
+     "clock#time"
+  ],
+
+  "modules-center": [
+  	
+  ],
+
+  "modules-right": [
+    "tray",
+    "battery",
+    "power-profiles-daemon",
+    "custom/pomodoro",
+    "pulseaudio",
+    "clock#date",
+    "custom/power"
+  ],
+
+  // ======================================================
+  // LEFT SIDE MODULES
+  // ======================================================
+
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{name}",
+    "format-icons": {
+      "default": ""
+    },
+    "persistent-workspaces": {
+      "1": [], "2": [], "3": [], "4": [], "5": []
+    }
+  },
+
+  // ======================================================
+  // RIGHT SIDE MODULES
+  // ======================================================
+
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{capacity}% {icon}",
+    "format-charging": "{capacity}% {icon}",
+    "format-plugged": "{capacity}% ",
+    "format-full": "{capacity}% 󰂅",
+    "interval": 5,
+    "on-click": "~/.config/waybar/power-menu.sh",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format-icons": {
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    }
+  },
+
+  "custom/pomodoro": {
+    "exec": "python3 ${DOTFILES_DIR:-$HOME/dotfiles}/scripts/pomo.py",
+    "interval": 1,
+    "format": "{}",
+    "on-click": "python3 ${DOTFILES_DIR:-$HOME/dotfiles}/scripts/pomo.py toggle",
+    "on-click-right": "python3 ${DOTFILES_DIR:-$HOME/dotfiles}/scripts/pomo.py reset"
+  },
+  
+"custom/power": {
+    "format": "⏻",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/power-menu.sh"
+},
+  
+
+  "tray": {
+    "icon-size": 13,
+    "spacing": 12
+  },
+
+  "pulseaudio": {
+    "format": "VOL {volume}% ",
+    "format-muted": "[MUTE] ",
+    "scroll-step": 5,
+    "format-icons": {
+      "default": ["", "", ""]
+    }
+  },
+
+  "clock#time": {
+    "format": " Hora: {:%H:%M}",
+    "tooltip": false
+  },
+
+  "clock#date": {
+    "format": "{:%e %B %A }",
+    "tooltip": false
+  },
+
+  // ======================================================
+  // HELPERS
+  // ======================================================
+  "custom/sep": {
+    "format": "︱",
+    "tooltip": false
+  },
+  // ======================================================
+    // POWER PROFILES 
+    // ======================================================
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Perfil actual: {profile}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "󰓅",
+        "balanced": "󰾆",
+        "power-saver": "󰎆"
+      }
+    }
+  
+}

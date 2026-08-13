@@ -1,0 +1,4 @@
+# Paquetes del AUR
+zen-browser-bin
+hyprland-plugins
+# hyprshutdown (opcional: cierre elegante del entorno; el bind hace fallback a hyprctl dispatch exit)

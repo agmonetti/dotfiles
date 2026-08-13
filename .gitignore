@@ -1,0 +1,53 @@
+# --- Secretos y credenciales ---
+.gitconfig
+.bash_secrets
+.env
+.env.*
+**/secrets/
+*.pem
+*.key
+*.local
+
+# --- Identidad / personal ---
+.zshrc.local
+git/.gitconfig
+
+# --- Archivos de sistema ---
+.DS_Store
+Thumbs.db
+.directory
+*~
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# --- Logs ---
+*.log
+nohup.out
+
+# --- Editores ---
+.vscode/
+.idea/
+*.code-workspace
+
+# --- Node / NVM ---
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# --- Cache y compilados ---
+__pycache__/
+*.pyc
+.cache/
+
+# --- Stow internos ---
+*.stow-backup
+
+# Micro (Historial y temporales)
+micro/.config/micro/backups/
+micro/.config/micro/buffers/
+
+# Yazi (Plugins instalados por el gestor)
+yazi/.config/yazi/plugins/*
+yazi-dev/.config/yazi-dev/plugins/*

@@ -1,0 +1,40 @@
+# Paquetes oficiales (repos de Arch)
+# Entorno gráfico Hyprland
+hyprland
+hypridle
+hyprlock
+hyprpaper
+hyprshot
+hyprpolkitagent
+xdg-desktop-portal-hyprland
+waybar
+mako
+
+# Terminal y shell
+kitty
+zsh
+zsh-theme-powerlevel10k
+micro
+yazi
+rofi
+
+# Utilidades usadas por binds/scripts
+brightnessctl
+wireplumber
+power-profiles-daemon
+jq
+imagemagick
+socat
+python
+
+# Fuentes
+ttf-jetbrains-mono-nerd
+ttf-fira-code
+ttf-nerd-fonts-symbols
+
+# Gestión de dotfiles
+stow
+git
+git-delta
+gh
+fastfetch

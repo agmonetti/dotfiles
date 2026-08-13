@@ -1,0 +1,8 @@
+-- Reglas de ventanas y workspaces.
+-- La config base no necesita reglas; se agregan acá de forma modular.
+-- Ejemplo de regla de ventana:
+-- hl.window_rule({
+--     name  = "float-yazi",
+--     match = { class = "yazi" },
+--     float = true,
+-- })

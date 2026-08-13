@@ -1,0 +1,18 @@
+[opener]
+
+pdf = [
+  { run = 'zen-browser "$@"', desc = "Zen Browser" },
+  { run = 'onlyoffice-desktopeditors "$@"', desc = "OnlyOffice" }
+]
+
+micro = [
+  { run = 'micro "$@"', block = true, desc = "Micro Editor" }
+]
+
+[open]
+
+prepend_rules = [
+  { mime = "application/pdf", use = ["pdf", "reveal"] },
+
+  { mime = "text/*", use = ["micro"] }
+]

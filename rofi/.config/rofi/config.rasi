@@ -1,0 +1,89 @@
+configuration {
+    show-icons: true;
+    display-window: "Ventanas:";
+    display-run: "Ejecutar:";
+    display-drun: "Apps:";
+    window-format: "  {c}  ·  {t}";
+    font: "monospace 11"; 
+}
+
+* {
+    background-color: transparent;
+    text-color: #cccccc; /* Gris claro por defecto para que sea 100% legible */
+    margin: 0;
+    padding: 0;
+    border: 0;
+    spacing: 0;
+}
+
+window {
+    background-color: #080808; /* Negro profundo */
+    border: 1px solid;
+    border-color: #222222;
+    border-radius: 8px;
+    width: 25%; /* Achicamos la ventana del 40% al 25% */
+    padding: 12px; /* Menos relleno para que sea más compacta */
+}
+
+mainbox {
+    children: [inputbar, listview];
+    spacing: 12px;
+}
+
+inputbar {
+    children: [prompt, entry];
+    background-color: #121212;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid;
+    border-color: #1a1a1a;
+}
+
+prompt {
+    text-color: #ffffff;
+    padding: 0 10px 0 0;
+    font-weight: bold;
+}
+
+entry {
+    placeholder: "Buscar...";
+    placeholder-color: #555555;
+    text-color: #ffffff;
+}
+
+listview {
+    lines: 6; /* Mostramos una línea menos para achicar el alto */
+    columns: 1;
+    scrollbar: false;
+    spacing: 4px;
+    padding: 10px 0 0 0;
+}
+
+element {
+    padding: 8px 10px;
+    border-radius: 6px;
+}
+
+/* Forzamos el color de los elementos no seleccionados */
+element normal normal,
+element alternate normal {
+    background-color: transparent;
+    text-color: #aaaaaa; 
+}
+
+/* Matamos ese azul chillón y usamos un gris oscuro elegante */
+element selected {
+    background-color: #1f1f1f; 
+    text-color: #ffffff;
+}
+
+element-text, element-icon {
+    background-color: inherit;
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+
+element-icon {
+    size: 1.2em; /* Iconos un poquito más chicos */
+    margin: 0 10px 0 0;
+}

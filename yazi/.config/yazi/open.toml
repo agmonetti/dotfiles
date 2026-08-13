@@ -1,0 +1,10 @@
+[opener]
+pdf = [
+    { run = 'zen-browser "$@"', desc = "Zen Browser" },
+    { run = 'onlyoffice-desktopeditors "$@"', desc = "OnlyOffice" }
+]
+
+[open]
+rules = [
+    { mime = "application/pdf", use = "pdf" },
+]

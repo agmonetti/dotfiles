@@ -1,0 +1,30 @@
+# Plantilla de configuración de git.
+# Copiá este archivo a tu ~/.gitconfig (o usá git/.gitconfig + gitignore)
+# y reemplazá la identidad por la tuya.
+
+[user]
+	email = tu@email.com
+	name = Tu Nombre
+
+[init]
+	defaultBranch = main
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    dark = true
+    side-by-side = true
+    line-numbers = true
+
+[merge]
+    conflictStyle = zdiff3
+
+# Si usás GitHub CLI para autenticación:
+# [credential "https://github.com"]
+# 	helper =
+# 	helper = !/usr/bin/gh auth git-credential
