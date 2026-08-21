@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=lazyteams
+GenericName=Teams TUI
+Comment=Microsoft Teams en la terminal
+Exec=lazyteams
+Terminal=true
+Categories=Network;InstantMessaging;
+Keywords=teams;chat;tui;

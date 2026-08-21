@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=relm
+GenericName=Database TUI
+Comment=Explorador de bases de datos en la terminal
+Exec=relm
+Terminal=true
+Categories=Development;Database;
+Keywords=sql;database;tui;

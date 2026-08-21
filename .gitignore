@@ -44,6 +44,9 @@ __pycache__/
 # --- Stow internos ---
 *.stow-backup
 
+# Excepción: módulo apps versiona sus entradas .desktop
+!apps/.local/
+
 # Micro (Historial y temporales)
 micro/.config/micro/backups/
 micro/.config/micro/buffers/

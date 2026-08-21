@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=lazyteams-auth
+GenericName=Teams Auth Helper
+Comment=Autenticación de lazyteams
+Exec=lazyteams-auth
+Terminal=true
+Categories=Utility;
+Keywords=teams;auth;login;tui;

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=notabrowser
+GenericName=Terminal Reader
+Comment=Lector web en la terminal
+Exec=notabrowser
+Terminal=true
+Categories=Network;WebBrowser;
+Keywords=browser;reader;tui;

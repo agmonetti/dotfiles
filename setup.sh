@@ -74,9 +74,9 @@ if ask_yes_no "¿Enlazar las configuraciones con Stow?"; then
         fi
     done
 
-    for module in hyprland waybar mako kitty rofi micro yazi yazi-dev zsh scripts; do
+    for module in hyprland waybar mako kitty rofi micro yazi yazi-dev zsh scripts apps; do
         if [ -d "$DOTFILES_DIR/$module" ]; then
-            stow "$module" 2>/dev/null || stow --adopt "$module"
+            stow -t "$HOME" "$module" 2>/dev/null || stow -t "$HOME" --adopt "$module"
             echo "   Enlazado: $module"
         fi
     done

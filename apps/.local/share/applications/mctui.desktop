@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=mctui
+GenericName=Minecraft TUI
+Comment=Cliente de servidores Minecraft en la terminal
+Exec=mctui
+Terminal=true
+Categories=Game;
+Keywords=minecraft;server;tui;
