@@ -27,6 +27,9 @@ imagemagick
 socat
 python
 
+# Mantenimiento
+pacman-contrib
+
 # Fuentes
 ttf-jetbrains-mono-nerd
 ttf-fira-code
