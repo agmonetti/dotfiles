@@ -7,6 +7,7 @@ while true; do
     if [[ "$BATTERY" -le 20 && "$STATUS" == "Discharging" ]]; then
         notify-send \
             -u critical \
+            -t 10000 \
             -h string:x-canonical-private-synchronous:battery \
             "Batería baja" \
             "Queda ${BATTERY}% de batería 󰁻"
