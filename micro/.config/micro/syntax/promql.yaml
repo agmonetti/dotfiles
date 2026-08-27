@@ -1,0 +1,55 @@
+filetype: promql
+
+detect:
+    filename: "\\.(promql|prom)$"
+
+rules:
+    # Aggregation Operators & Modifiers
+    - statement: "\\b(sum|min|max|avg|group|stddev|stdvar|count|count_values|bottomk|topk|quantile|limitk|limit_ratio)\\b"
+    - statement: "\\b(by|without|on|ignoring|group_left|group_right|bool|and|or|unless|offset)\\b"
+
+    # Built-in PromQL Functions
+    - special: "\\b(abs|absent|absent_over_time|ceil|changes|clamp|clamp_max|clamp_min|day_of_month|day_of_week|day_of_year|days_in_month|delta|deriv|exp|floor)\\b"
+    - special: "\\b(histogram_avg|histogram_count|histogram_fraction|histogram_quantile|histogram_stddev|histogram_stdvar|histogram_sum|holt_winters|hour|idelta|increase|irate)\\b"
+    - special: "\\b(label_join|label_replace|ln|log2|log10|minute|month|predict_linear|rate|resets|round|scalar|sgn|sort|sort_desc|sqrt|time|timestamp|vector|year)\\b"
+    - special: "\\b(avg_over_time|min_over_time|max_over_time|sum_over_time|count_over_time|quantile_over_time|stddev_over_time|stdvar_over_time|last_over_time|present_over_time|mad_over_time)\\b"
+
+    # Time Duration Literals (e.g. 5m, 1h, 30s, 1d)
+    - type: "\\b[0-9]+(ms|s|m|h|d|w|y)\\b"
+
+    # Constants & Special Numbers
+    - constant: "\\b(Inf|NaN)\\b"
+    - constant.number: "\\b[-+]?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?\\b"
+
+    # Metric Names & Label Keys
+    - identifier: "[a-zA-Z_:][a-zA-Z0-9_:]*"
+
+    # Operators & Brackets
+    - symbol.brackets: "[(){}\\[\\]]"
+    - symbol.operator: "(=~|!~|!=|==|<=|>=|<|>|[-+/*%^=,;])"
+
+    # Strings
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - constant.string:
+        start: "`"
+        end: "`"
+
+    # Comments
+    - comment:
+        start: "#"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"

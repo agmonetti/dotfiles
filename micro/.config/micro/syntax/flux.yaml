@@ -1,0 +1,51 @@
+filetype: flux
+
+detect:
+    filename: "\\.flux$"
+
+rules:
+    # Flux Language Keywords
+    - statement: "\\b(import|package|option|builtin|test|return|if|then|else|and|or|not|exists|with)\\b"
+
+    # Core Functions & Transformations
+    - special: "\\b(from|range|filter|mean|sum|count|first|last|min|max|group|window|aggregateWindow|yield|map|reduce|sort|limit|tail|drop|keep|duplicate|rename|set|pivot|join|union|to|toHTTP|toKafka)\\b"
+
+    # Standard Packages & Namespaces
+    - preproc: "\\b(array|bitwise|csv|date|dict|experimental|generate|http|influxdata|interpolate|json|kafka|math|mqtt|pagerduty|promql|regexp|runtime|sample|slack|socket|sql|strings|system|table|testing|timezone|types|universe|v1)\\b"
+
+    # Type Casting Functions
+    - type: "\\b(time|duration|int|uint|float|string|bool|bytes)\\b"
+
+    # Time Duration Units (e.g. -15m, 1h, 30s)
+    - type: "[-+]?[0-9]+(ns|us|µs|ms|s|m|h|d|w|mo|y)\\b"
+
+    # Constants & Booleans
+    - constant.bool: "\\b(true|false)\\b"
+    - constant: "\\b(null)\\b"
+    - constant.number: "\\b[-+]?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?\\b"
+
+    # Pipeline Operator & Brackets
+    - symbol.operator: "(\\|>|==|!=|<=|>=|<|>|=~|!~|[-+/*=<>!~%?:&|,;])"
+    - symbol.brackets: "[(){}\\[\\]]"
+
+    # Strings
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+            - identifier: "\\x24\\{.*?\\}"
+
+    # Regex
+    - constant.string:
+        start: "/"
+        end: "/"
+        skip: "\\\\."
+
+    # Comments
+    - comment:
+        start: "//"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"

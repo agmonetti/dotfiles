@@ -1,0 +1,66 @@
+filetype: influxql
+
+detect:
+    filename: "\\.influxql$"
+
+rules:
+    # InfluxQL Clauses & Statements
+    - statement: "(?i)\\b(SELECT|FROM|WHERE|GROUP\\s+BY|ORDER\\s+BY|ASC|DESC|LIMIT|SLIMIT|OFFSET|SOFFSET|INTO|FILL)\\b"
+    - statement: "(?i)\\b(SHOW|CREATE|DROP|ALTER|GRANT|REVOKE|KILL|EXPLAIN(\\s+ANALYZE)?)\\b"
+    - statement: "(?i)\\b(DATABASES|DATABASE|MEASUREMENTS|MEASUREMENT|SERIES|TAG\\s+KEYS|TAG\\s+VALUES|FIELD\\s+KEYS|RETENTION\\s+POLICIES|RETENTION\\s+POLICY|CONTINUOUS\\s+QUERIES|CONTINUOUS\\s+QUERY|USERS|USER|DIAGNOSTICS|STATS|SUBSCRIPTIONS)\\b"
+    - statement: "(?i)\\b(DURATION|REPLICATION|SHARD\\s+DURATION|DEFAULT|ON|WITH|KEY|PRIVILEGES|READ|WRITE|ALL)\\b"
+    - statement: "(?i)\\b(AND|OR|NOT)\\b"
+
+    # Built-in InfluxQL Functions
+    - special: "(?i)\\b(COUNT|DISTINCT|INTEGRAL|MEAN|MEDIAN|MODE|SPREAD|STDDEV|SUM|BOTTOM|FIRST|LAST|MAX|MIN|PERCENTILE|SAMPLE|TOP)\\b"
+    - special: "(?i)\\b(CUMULATIVE_SUM|DERIVATIVE|DIFFERENCE|ELAPSED|MOVING_AVERAGE|NON_NEGATIVE_DERIVATIVE|NON_NEGATIVE_DIFFERENCE|HOLT_WINTERS)\\b"
+    - special: "(?i)\\b(ABS|ACOS|ASIN|ATAN|ATAN2|CEIL|COS|EXP|FLOOR|LN|LOG|LOG2|LOG10|POW|ROUND|SIN|SQRT|TAN)\\b"
+
+    # Time Duration Units
+    - type: "\\b[0-9]+(ns|u|µ|ms|s|m|h|d|w)\\b"
+
+    # Constants & Booleans
+    - constant.bool: "(?i)\\b(true|false)\\b"
+    - constant: "(?i)\\b(null|now\\(\\))\\b"
+    - constant.number: "\\b[-+]?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?\\b"
+
+    # Regex & Identifiers
+    - symbol.brackets: "[(){}\\[\\]]"
+    - symbol.operator: "(=~|!~|!=|==|<=|>=|<|>|[-+/*%=,;])"
+
+    # Strings & Identifiers
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - identifier:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+
+    - constant.string:
+        start: "/"
+        end: "/"
+        skip: "\\\\."
+
+    # Comments
+    - comment:
+        start: "--"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"
+
+    - comment:
+        start: "//"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"
+
+    - comment:
+        start: "#"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"

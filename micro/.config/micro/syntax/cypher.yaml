@@ -1,0 +1,76 @@
+filetype: cypher
+
+detect:
+    filename: "(\\.(cypher|cyp)$)"
+    header: "^(//.*cypher|#!.*/(env +)?cypher-shell)"
+
+rules:
+    # Query Clauses & Mutations
+    - statement: "(?i)\\b(MATCH|OPTIONAL\\s+MATCH|WHERE|WITH|UNWIND|RETURN|ORDER\\s+BY|SKIP|LIMIT|DISTINCT|ASC|ASCENDING|DESC|DESCENDING)\\b"
+    - statement: "(?i)\\b(CREATE|DELETE|DETACH\\s+DELETE|DETACH|SET|REMOVE|MERGE|ON\\s+CREATE\\s+SET|ON\\s+MATCH\\s+SET)\\b"
+    - statement: "(?i)\\b(CALL|YIELD|UNION(\\s+ALL)?|FOREACH|USE\\s+GRAPH)\\b"
+    - statement: "(?i)\\b(SHOW\\s+(DATABASES|ROLES|USERS|PRIVILEGES|PROCEDURES|FUNCTIONS|TRANSACTIONS|INDEXES|CONSTRAINTS)|TERMINATE\\s+TRANSACTIONS)\\b"
+    - statement: "(?i)\\b(CREATE|DROP)\\s+(INDEX|CONSTRAINT)\\b"
+    - statement: "(?i)\\b(CASE|WHEN|THEN|ELSE|END)\\b"
+
+    # Predicates & Logical Operators
+    - statement: "(?i)\\b(AND|OR|XOR|NOT|IN|STARTS\\s+WITH|ENDS\\s+WITH|CONTAINS|IS\\s+NULL|IS\\s+NOT\\s+NULL|IS\\s+TYPED|IS\\s+NORMALIZED)\\b"
+
+    # Procedures & Libraries (APOC, Graph Data Science)
+    - preproc: "\\b(apoc|gds)\\.[a-zA-Z0-9_.]+\\b"
+
+    # Built-in Functions
+    - special: "(?i)\\b(nodes|relationships|labels|type|id|elementId|startNode|endNode|length|size|isEmpty)\\b"
+    - special: "(?i)\\b(count|sum|avg|min|max|collect|percentileCont|percentileDisc|stDev|stDevP|head|last|tail|coalesce|properties|keys|values|range|reduce|all|any|none|single|exists)\\b"
+    - special: "(?i)\\b(toInteger|toIntegerOrNull|toFloat|toFloatOrNull|toBoolean|toBooleanOrNull|toString|toStringOrNull|abs|ceil|floor|round|sign|rand|exp|log|log10|sqrt|e|pi)\\b"
+    - special: "(?i)\\b(toLower|toUpper|trim|ltrim|rtrim|replace|substring|left|right|split|reverse|btrim)\\b"
+    - special: "(?i)\\b(date|datetime|time|localtime|localdatetime|duration|point|distance|withinBBox)\\b"
+
+    # Node Labels & Relationship Types
+    - type: ":`?[a-zA-Z_][a-zA-Z0-9_]*`?"
+
+    # Query Parameters ($param)
+    - identifier: "\\$[a-zA-Z_][a-zA-Z0-9_]*"
+
+    # Constants & Literals
+    - constant.bool: "(?i)\\b(true|false)\\b"
+    - constant: "(?i)\\b(null)\\b"
+    - constant.number: "\\b0[xX][0-9a-fA-F]+\\b"
+    - constant.number: "\\b[-+]?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?\\b"
+
+    # Graph Patterns & Operators
+    - symbol.brackets: "[(){}\\[\\]]"
+    - symbol.operator: "(-->|<--|->|<-|[-+/*=<>!~%?:&|,;])"
+
+    # Strings
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - identifier:
+        start: "`"
+        end: "`"
+        skip: "\\\\."
+
+    # Comments
+    - comment:
+        start: "//"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"
+
+    - comment:
+        start: "/\\*"
+        end: "\\*/"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"

@@ -1,0 +1,79 @@
+filetype: mongodb
+
+detect:
+    filename: "((^|\\.|_)(mongorc|mongodbrc)(\\.js)?$|\\.(mongodb|mongosh|mongo)(\\.js)?$)"
+    header: "^(//!mongosh|//mongosh|#!.*/(env +)?mongosh|//.*mongodb|use\\s+[a-zA-Z0-9_-]+|db\\.[a-zA-Z0-9_]+)"
+
+rules:
+    # MongoDB Shell Commands & Global Objects
+    - statement: "\\b(show\\s+(dbs|databases|collections|tables|profile|users|roles|logs)|use\\s+[a-zA-Z0-9_-]+|it|cls|exit|quit|help)\\b"
+    - type: "\\b(db|sh|rs|Mongo|connect|ObjectId|ISODate|UUID|NumberInt|NumberLong|NumberDecimal|BinData|HexData|MD5|DBRef|Timestamp|MinKey|MaxKey|Code)\\b"
+
+    # MongoDB Collection & Database Methods
+    - identifier: "\\b(find|findOne|findOneAndDelete|findOneAndReplace|findOneAndUpdate|insertOne|insertMany|updateOne|updateMany|deleteOne|deleteMany|replaceOne|bulkWrite)\\b"
+    - identifier: "\\b(aggregate|countDocuments|estimatedDocumentCount|distinct|watch)\\b"
+    - identifier: "\\b(createIndex|createIndexes|dropIndex|dropIndexes|getIndexes|reIndex|drop|renameCollection|validate|explain|stats|dataSize|storageSize|totalIndexSize|totalSize)\\b"
+    - identifier: "\\b(getCollectionNames|getCollectionInfos|createCollection|runCommand|adminCommand|getSiblingDB|getName|dropDatabase|auth|logout|createUser|dropUser|grantRolesToUser|revokeRolesFromUser)\\b"
+
+    # MongoDB Aggregation Stages & Query/Update Operators
+    - special: "\\$(match|group|project|lookup|unwind|sort|limit|skip|addFields|set|unset|replaceRoot|replaceWith|facet|bucket|bucketAuto|count|out|merge|graphLookup|sample|unionWith|densify|fill|documents|search|vectorSearch)\\b"
+    - special: "\\$(eq|ne|gt|gte|lt|lte|in|nin|and|or|not|nor|exists|type|expr|jsonSchema|mod|regex|text|where|geoIntersects|geoWithin|near|nearSphere|all|elemMatch|size)\\b"
+    - special: "\\$(inc|mul|rename|setOnInsert|currentDate|addToSet|pop|pull|pullAll|push|each|position|slice)\\b"
+    - special: "\\$(sum|avg|min|max|first|last|cond|ifNull|switch|concat|substr|toLower|toUpper|trim|ltrim|rtrim|dateToString|dateFromString|year|month|dayOfMonth|hour|minute|second|millisecond|arrayElemAt|concatArrays|filter|map|reduce|reverseArray|indexOfArray|mergeObjects|convert|toBool|toDate|toDecimal|toDouble|toInt|toLong|toObjectId|toString)\\b"
+
+    # Standard JavaScript Statements & Flow
+    - statement: "\\b(async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|finally|for|function\\*?|get|if|import|from|in|of|instanceof|let|new|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\\b"
+    - constant.bool: "\\b(true|false)\\b"
+    - constant: "\\b(null|undefined|NaN|Infinity)\\b"
+
+    # JS Standard Built-ins & Types
+    - type: "\\b(Array|Boolean|Date|Error|Function|JSON|Map|Math|Number|Object|Promise|Proxy|Reflect|RegExp|Set|String|Symbol|WeakMap|WeakSet|BigInt|Int8Array|Uint8Array|Int16Array|Uint16Array|Int32Array|Uint32Array|Float32Array|Float64Array)\\b"
+    - identifier: "\\b(console|process|global|require)\\b"
+
+    # Numbers
+    - constant.number: "\\b[-+]?([1-9][0-9]*|0[0-7]*|0x[0-9a-fA-F]+)([uU][lL]?|[lL][uU]?)?\\b"
+    - constant.number: "\\b[-+]?([0-9]+\\.[0-9]*|[0-9]*\\.[0-9]+)([EePp][+-]?[0-9]+)?[fFlL]?"
+    - constant.number: "\\b[-+]?([0-9]+[EePp][+-]?[0-9]+)[fFlL]?"
+
+    # Symbols & Operators
+    - symbol.brackets: "[(){}\\[\\]]"
+    - symbol.operator: "([-+/*=<>!~%?:&|]|[.]{3})"
+
+    # Strings
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - constant.string:
+        start: "`"
+        end: "`"
+        rules:
+            - constant.specialChar: "\\\\."
+            - identifier: "\\x24\\{.*?\\}"
+
+    # Comments & Shebang
+    - comment: "^#!.*/(env +)?(mongosh|node)( |$)"
+
+    - comment:
+        start: "//"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"
+
+    - comment:
+        start: "/\\*"
+        end: "\\*/"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+            - todo: "(TODO|XXX|FIXME)"

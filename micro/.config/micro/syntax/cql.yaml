@@ -1,0 +1,64 @@
+filetype: cql
+
+detect:
+    filename: "\\.cql$"
+    header: "(^--\\s*cql|^//\\s*cql)"
+
+rules:
+    - statement: "(?i)\\b(SELECT|INSERT(\\s+INTO)?|UPDATE|DELETE|CREATE|ALTER|DROP|TRUNCATE|USE|DESCRIBE|DESC)\\b"
+    - statement: "(?i)\\b(KEYSPACE|KEYSPACES|TABLE|TABLES|COLUMN|COLUMNS|INDEX|CUSTOM|MATERIALIZED\\s+VIEW|TYPE|FUNCTION|AGGREGATE|TRIGGER|ROLE|ROLES|USER|USERS)\\b"
+    - statement: "(?i)\\b(FROM|WHERE|VALUES|SET|ADD|RENAME|DISTINCT|AS|GROUP\\s+BY|ORDER\\s+BY|ASC|DESC|LIMIT|PER\\s+PARTITION\\s+LIMIT)\\b"
+    - statement: "(?i)\\b(PRIMARY\\s+KEY|PARTITION\\s+KEY|CLUSTERING\\s+ORDER\\s+BY|WITH|AND|OR|NOT|IN|CONTAINS(\\s+KEY)?|ALLOW\\s+FILTERING)\\b"
+    - statement: "(?i)\\b(USING|TTL|TIMESTAMP|WRITETIME|IF\\s+EXISTS|IF\\s+NOT\\s+EXISTS|IF)\\b"
+    - statement: "(?i)\\b(BEGIN\\s+(UNLOGGED\\s+|LOGGED\\s+)?BATCH|APPLY\\s+BATCH|BATCH)\\b"
+    - statement: "(?i)\\b(GRANT|REVOKE|AUTHORIZE|SUPERUSER|NOSUPERUSER|LOGIN|NOLOGIN|PASSWORD|REPLICATION|DURABLE_WRITES|CLASS|COMPACT\\s+STORAGE)\\b"
+    - statement: "(?i)\\b(TOKEN|STATIC|FROZEN|DEFAULT|ENTRIES|FULL)\\b"
+
+    - type: "(?i)\\b(ascii|bigint|blob|boolean|counter|date|decimal|double|duration|float|inet|int|smallint|text|time|timestamp|timeuuid|tinyint|tuple|uuid|varchar|varint|vector|list|set|map)\\b"
+
+    - special: "(?i)\\b(now|toDate|toTimestamp|toTime|toUnixTimestamp|blobAsText|textAsBlob|toJson|fromJson|uuid|minTimeuuid|maxTimeuuid|dateOf|unixTimestampOf|count|avg|min|max|sum|cast|similarity|ttl|writetime)\\b"
+
+    - constant.bool: "(?i)\\b(true|false)\\b"
+    - constant: "(?i)\\b(null|nan|infinity)\\b"
+    - constant: "\\b[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\\b"
+    - constant.number: "\\b0[xX][0-9a-fA-F]+\\b"
+    - constant.number: "\\b[-+]?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?\\b"
+
+    - symbol.brackets: "[(){}\\[\\]]"
+    - symbol.operator: "[-+/*=<>!~%?:&|,;]"
+
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "''"
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - constant.string:
+        start: "\\$\\$"
+        end: "\\$\\$"
+
+    - comment:
+        start: "--"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"
+
+    - comment:
+        start: "//"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"
+
+    - comment:
+        start: "/\\*"
+        end: "\\*/"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"

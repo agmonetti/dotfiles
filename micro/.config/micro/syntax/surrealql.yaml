@@ -1,0 +1,74 @@
+filetype: surrealql
+
+detect:
+    filename: "\\.(surql|surrealql)$"
+
+rules:
+    # SurrealQL Schema & DDL
+    - statement: "(?i)\\b(DEFINE|REMOVE|ALTER|REBUILD)\\s+(NAMESPACE|DATABASE|TABLE|FIELD|INDEX|EVENT|USER|TOKEN|SCOPE|PARAM|FUNCTION|ACCESS|CONFIG|ANALYZER)\\b"
+    - statement: "(?i)\\b(SCHEMALESS|SCHEMAFULL|PERMISSIONS|FULL|FOR|WHERE|COMMENT|ASSERT|VALUE|DEFAULT|READONLY|FLEXIBLE|DROP)\\b"
+
+    # SurrealQL DML & Query Statements
+    - statement: "(?i)\\b(SELECT|CREATE|UPDATE|UPSERT|DELETE|RELATE|INSERT(\\s+INTO)?|MERGE|PATCH|CONTENT|REPLACE)\\b"
+    - statement: "(?i)\\b(SET|UNSET|RETURN|LET|BEGIN(\\s+TRANSACTION)?|COMMIT(\\s+TRANSACTION)?|CANCEL(\\s+TRANSACTION)?|INFO(\\s+FOR)?|KILL|LIVE|SLEEP|THROW)\\b"
+    - statement: "(?i)\\b(FROM|WHERE|SPLIT(\\s+AT)?|GROUP(\\s+BY)?|ORDER(\\s+BY)?|ASC|DESC|COLLATE|NUMERIC|LIMIT(\\s+BY)?|START(\\s+AT)?|FETCH|TIMEOUT|PARALLEL|EXPLAIN)\\b"
+    - statement: "(?i)\\b(IF|ELSE|THEN|END|FOR|IN|AND|OR|NOT|IS|CONTAINS|CONTAINSALL|CONTAINSANY|CONTAINSNONE|INSIDE|IN|OUTSIDE|INTERSECTS)\\b"
+
+    # Data Types
+    - type: "(?i)\\b(any|array|bool|bytes|datetime|decimal|duration|float|int|number|object|point|string|record|geometry|set|uuid|option)\\b"
+
+    # Built-in Function Namespaces
+    - special: "\\b(time|string|math|array|type|geo|rand|crypto|http|session|vector|search|parse|bytes|duration|record|function)::[a-zA-Z0-9_:]+\\b"
+
+    # Variables ($var) & Parameters
+    - identifier: "\\$[a-zA-Z0-9_]+"
+
+    # Constants & Booleans
+    - constant.bool: "(?i)\\b(true|false)\\b"
+    - constant: "(?i)\\b(null|none)\\b"
+    - constant.number: "\\b[-+]?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?\\b"
+    - constant: "\\b[0-9]+(ns|us|µs|ms|s|m|h|d|w|y)\\b"
+
+    # Graph Relations & Operators
+    - symbol.operator: "(->|<-|<->|[-+/*=<>!~%?:&|,;])"
+    - symbol.brackets: "[(){}\\[\\]]"
+
+    # Strings
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    # Comments
+    - comment:
+        start: "--"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"
+
+    - comment:
+        start: "//"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"
+
+    - comment:
+        start: "#"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"
+
+    - comment:
+        start: "/\\*"
+        end: "\\*/"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"

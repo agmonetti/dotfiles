@@ -1,0 +1,72 @@
+filetype: n1ql
+
+detect:
+    filename: "\\.(n1ql|sqlpp)$"
+
+rules:
+    # N1QL / SQL++ Clauses & Statements
+    - statement: "(?i)\\b(SELECT|FROM|UNNEST|NEST|JOIN|LEFT(\\s+OUTER)?\\s+JOIN|INNER\\s+JOIN|ON|KEYS|KEY)\\b"
+    - statement: "(?i)\\b(INSERT(\\s+INTO)?|UPSERT(\\s+INTO)?|UPDATE|DELETE(\\s+FROM)?|MERGE(\\s+INTO)?|RETURNING)\\b"
+    - statement: "(?i)\\b(CREATE(\\s+PRIMARY)?\\s+INDEX|BUILD\\s+INDEX|DROP\\s+INDEX|ALTER\\s+INDEX|ADVISE|EXPLAIN|PREPARE|EXECUTE)\\b"
+    - statement: "(?i)\\b(WHERE|GROUP\\s+BY|HAVING|ORDER\\s+BY|ASC|DESC|LIMIT|OFFSET|LET|LETTING|WINDOW|WITH|AS|DISTINCT|ALL)\\b"
+    - statement: "(?i)\\b(UNION(\\s+ALL)?|INTERSECT(\\s+ALL)?|EXCEPT(\\s+ALL)?)\\b"
+    - statement: "(?i)\\b(ANY|EVERY|SOME|SATISFIES|IN|WITHIN|EXISTS|NOT|AND|OR|BETWEEN|LIKE|IS\\s+(NOT\\s+)?(NULL|MISSING|VALUED)|IS\\s+KNOWN|IS\\s+UNKNOWN)\\b"
+    - statement: "(?i)\\b(CASE|WHEN|THEN|ELSE|END|USE\\s+(KEYS|INDEX))\\b"
+
+    # JSON Array / Object Operators & Comprehensions
+    - statement: "(?i)\\b(ARRAY|OBJECT|FIRST|FOR)\\b"
+
+    # JSON Built-in Functions & Metadata
+    - special: "(?i)\\b(META|UUID|ARRAY_AGG|ARRAY_APPEND|ARRAY_CONCAT|ARRAY_CONTAINS|ARRAY_COUNT|ARRAY_DISTINCT|ARRAY_FLATTEN|ARRAY_INSERT|ARRAY_INTERSECT|ARRAY_LENGTH|ARRAY_MAX|ARRAY_MIN|ARRAY_POSITION|ARRAY_PREPEND|ARRAY_PUT|ARRAY_RANGE|ARRAY_REMOVE|ARRAY_REPEAT|ARRAY_REPLACE|ARRAY_REVERSE|ARRAY_SORT|ARRAY_STAR|ARRAY_SYMDIFF|ARRAY_UNION)\\b"
+    - special: "(?i)\\b(OBJECT_ADD|OBJECT_CONCAT|OBJECT_INNER_PAIRS|OBJECT_INNER_VALUES|OBJECT_LENGTH|OBJECT_NAMES|OBJECT_PAIRS|OBJECT_PUT|OBJECT_REMOVE|OBJECT_RENAME|OBJECT_REPLACE|OBJECT_UNWRAP|OBJECT_VALUES)\\b"
+    - special: "(?i)\\b(DATE_ADD_MILLIS|DATE_ADD_STR|DATE_DIFF_MILLIS|DATE_DIFF_STR|DATE_FORMAT_STR|DATE_PART_MILLIS|DATE_PART_STR|DATE_TRUNC_MILLIS|DATE_TRUNC_STR|MILLIS_TO_STR|MILLIS_TO_UTC|NOW_MILLIS|NOW_STR|STR_TO_MILLIS|STR_TO_UTC|CLOCK_MILLIS|CLOCK_STR)\\b"
+    - special: "(?i)\\b(IFMISSING|IFMISSINGORNULL|IFNULL|MISSINGIF|NULLIF|NVL|NVL2|ISARRAY|ISATOM|ISBOOLEAN|ISNUMBER|ISOBJECT|ISSTRING|TOARRAY|TOATOM|TOBOOLEAN|TONUMBER|TOOBJECT|TOSTRING)\\b"
+    - special: "(?i)\\b(COUNT|AVG|SUM|MIN|MAX|ROUND|TRUNC|FLOOR|CEIL|ABS|CONCAT|SUBSTR|LENGTH|LOWER|UPPER|TRIM|LTRIM|RTRIM|SPLIT|REPLACE)\\b"
+
+    # Constants & Booleans
+    - constant.bool: "(?i)\\b(true|false)\\b"
+    - constant: "(?i)\\b(null|missing)\\b"
+    - constant.number: "\\b[-+]?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?\\b"
+
+    # Brackets & Operators
+    - symbol.brackets: "[(){}\\[\\]]"
+    - symbol.operator: "(=~|!~|!=|==|<=|>=|<|>|[-+/*%=,;])"
+
+    # Strings
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - identifier:
+        start: "`"
+        end: "`"
+        skip: "\\\\."
+
+    # Comments
+    - comment:
+        start: "--"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"
+
+    - comment:
+        start: "//"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"
+
+    - comment:
+        start: "/\\*"
+        end: "\\*/"
+        rules:
+            - todo: "(TODO|XXX|FIXME)"
