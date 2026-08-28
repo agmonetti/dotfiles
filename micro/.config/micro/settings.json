@@ -1,4 +1,6 @@
 {
     "colorscheme": "kitty-sync",
-    "cursorline": false
+    "cursorline": false,
+    "softwrap": true,
+    "wordwrap": true
 }
