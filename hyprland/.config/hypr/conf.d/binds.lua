@@ -35,8 +35,9 @@ for i = 1, 10 do
     end
 end
 
--- Cambiar fondo de pantalla con rofi
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(scripts .. "/cambiar_fondo.sh"))
+-- Cambiar fondo de pantalla con rofi / Alternar color de Waybar manualmente
+hl.bind(mainMod .. " + W",         hl.dsp.exec_cmd(scripts .. "/cambiar_fondo.sh"))
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(scripts .. "/waybar-adaptive.sh toggle"))
 
 -- Capturas de pantalla
 hl.bind("Print",         hl.dsp.exec_cmd("hyprshot -m region -o " .. shotsDir))

@@ -47,6 +47,9 @@ __pycache__/
 # Excepción: módulo apps versiona sus entradas .desktop
 !apps/.local/
 
+# Waybar: CSS generado en runtime por scripts/waybar-adaptive.sh
+waybar/.config/waybar/adaptive.css
+
 # Micro (Historial y temporales)
 micro/.config/micro/backups/
 micro/.config/micro/buffers/

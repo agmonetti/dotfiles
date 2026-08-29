@@ -1,3 +1,5 @@
+@import "adaptive.css";
+
 /* ---------------- GLOBAL ---------------- */
 
 * {
@@ -152,8 +154,6 @@ menu {
     /* (Opcional) Espacio interno si le quieres poner un color de fondo */
     padding: 0 4px;
     
-    /* (Opcional) Para que el color del texto coincida con tu tema minimalista */
-    color: #ffffff; 
 }
 
 
