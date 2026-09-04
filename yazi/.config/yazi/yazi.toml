@@ -13,6 +13,8 @@ micro = [
 
 prepend_rules = [
   { mime = "application/pdf", use = ["pdf", "reveal"] },
+  { mime = "application/{json,ndjson}", use = ["micro"] },
+  { url = "*.json", use = ["micro"] },
 
   { mime = "text/*", use = ["micro"] }
 ]
