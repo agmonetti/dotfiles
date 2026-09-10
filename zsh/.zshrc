@@ -19,6 +19,10 @@ source $ZSH/oh-my-zsh.sh
 
 # --- RUTAS Y ENTORNO ---
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+
+# --- PNPM ---
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PNPM_HOME/bin:$PATH"
 export EDITOR="micro"
 
 # --- COLORES Y RENDERIZADO ---

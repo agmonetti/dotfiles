@@ -14,8 +14,12 @@ fi
 
 [[ -z "$wall" || ! -f "$wall" ]] && exit 0
 
-sleep 1
+# Esperar a que hyprpaper esté listo (máx 5s)
+for _i in 1 2 3 4 5; do hyprctl hyprpaper listloaded 2>/dev/null && break; sleep 1; done
 hyprctl hyprpaper preload "$wall"
 for m in $(hyprctl monitors -j | jq -r '.[].name'); do
     hyprctl hyprpaper wallpaper "$m,$wall"
 done
+
+# Color adaptativo de Waybar según el wallpaper restaurado
+"$DOTFILES_DIR/scripts/waybar-adaptive.sh"

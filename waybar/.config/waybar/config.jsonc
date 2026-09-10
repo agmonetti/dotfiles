@@ -68,11 +68,11 @@
   },
 
   "custom/pomodoro": {
-    "exec": "python3 ${DOTFILES_DIR:-$HOME/dotfiles}/scripts/pomo.py",
+    "exec": "python3 ${DOTFILES_DIR:-$HOME/Documentos/dotfiles}/scripts/pomo.py",
     "interval": 1,
     "format": "{}",
-    "on-click": "python3 ${DOTFILES_DIR:-$HOME/dotfiles}/scripts/pomo.py toggle",
-    "on-click-right": "python3 ${DOTFILES_DIR:-$HOME/dotfiles}/scripts/pomo.py reset"
+    "on-click": "python3 ${DOTFILES_DIR:-$HOME/Documentos/dotfiles}/scripts/pomo.py toggle",
+    "on-click-right": "python3 ${DOTFILES_DIR:-$HOME/Documentos/dotfiles}/scripts/pomo.py reset"
   },
   
 "custom/power": {

@@ -5,7 +5,7 @@ local menu        = "rofi -show drun"
 local fileManager = "kitty --class yazi -e yazi"
 
 local home     = os.getenv("HOME")
-local dotfiles = os.getenv("DOTFILES_DIR") or home .. "/dotfiles"
+local dotfiles = os.getenv("DOTFILES_DIR") or home .. "/Documentos/dotfiles"
 local scripts  = dotfiles .. "/scripts"
 local shotsDir = os.getenv("SCREENSHOTS_DIR") or home .. "/Pictures/Screenshots"
 
@@ -30,9 +30,7 @@ hl.bind("SUPER + D", hl.dsp.focus({ workspace = "empty" }))
 for i = 1, 10 do
     local key = i % 10 -- 10 se mapea a la tecla 0
     hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-    if i <= 5 then
-        hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
-    end
+    hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
 -- Cambiar fondo de pantalla con rofi / Alternar color de Waybar manualmente
