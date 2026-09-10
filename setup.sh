@@ -97,7 +97,14 @@ if ask_yes_no "¿Enlazar las configuraciones con Stow?"; then
     echo -e "${GREEN}[OK] Configuraciones enlazadas.${NC}\n"
 fi
 
-# --- 4. WALLPAPERS ---
+# --- 4. SERVICIOS SYSTEMD DE USUARIO ---
+if ask_yes_no "¿Habilitar servicios de usuario (hyprpolkitagent)?"; then
+    echo -e "${BLUE}-> Habilitando servicios de usuario...${NC}"
+    systemctl --user enable --now hyprpolkitagent.service
+    echo -e "${GREEN}[OK] Servicios de usuario habilitados.${NC}\n"
+fi
+
+# --- 5. WALLPAPERS ---
 if ask_yes_no "¿Copiar los wallpapers a ~/Pictures/Wallpapers?"; then
     mkdir -p ~/Pictures/Wallpapers
     [ -d "$DOTFILES_DIR/assets/wallpapers" ] && cp -r "$DOTFILES_DIR/assets/wallpapers/"* ~/Pictures/Wallpapers/

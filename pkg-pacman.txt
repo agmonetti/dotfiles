@@ -10,6 +10,9 @@ xdg-desktop-portal-hyprland
 waybar
 mako
 
+# Autenticación biométrica
+fprintd
+
 # Terminal y shell
 kitty
 zsh
