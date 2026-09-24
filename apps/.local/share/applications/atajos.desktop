@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Atajos de teclado
+Comment=Consultar atajos de Hyprland y Kitty
+Exec=sh -c "\\$HOME/Documentos/dotfiles/scripts/atajos.sh"
+Terminal=false
+Categories=Utility;
+Keywords=atajos;teclado;hyprland;kitty;

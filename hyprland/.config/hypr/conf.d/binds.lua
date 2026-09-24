@@ -14,6 +14,7 @@ hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind("CTRL + SPACE",    hl.dsp.exec_cmd(menu))
 hl.bind("SUPER + tab",     hl.dsp.exec_cmd("rofi -show window"))
+hl.bind("SUPER + SHIFT + apostrophe", hl.dsp.exec_cmd(scripts .. "/atajos.sh"))
 
 -- Gestión de ventanas
 hl.bind(mainMod .. " + C",    hl.dsp.window.close())
