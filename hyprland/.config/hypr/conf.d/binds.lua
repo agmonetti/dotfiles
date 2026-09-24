@@ -21,7 +21,7 @@ hl.bind(mainMod .. " + C",    hl.dsp.window.close())
 hl.bind(mainMod .. " + V",    hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + up",   hl.dsp.window.fullscreen({ mode = "fullscreen" }))
 hl.bind(mainMod .. " + M",    hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"))
--- Minimizar y restaurar la ventana
+-- Minimizar y restaurar ventanas con aislamiento por workspace
 local function window_tags(window)
     local tags = window.tags
     if type(tags) == "table" then return tags end
@@ -32,36 +32,48 @@ local function window_tags(window)
     return values
 end
 
-hl.bind(mainMod .. " + B", function()
-    if hl.get_workspace("special:minimized") then
-        for _, window in ipairs(hl.get_windows({ tag = "minimized" })) do
-            local origin
-            for _, tag in pairs(window_tags(window)) do
-                origin = tag:match("^minimized_ws_(%-?%d+)$") or origin
-            end
-
-            hl.dispatch(hl.dsp.window.move({
-                workspace = origin or hl.get_active_workspace(),
-                window = window
-            }))
-            hl.dispatch(hl.dsp.window.tag({ tag = "-minimized", window = window }))
-            if origin then
-                hl.dispatch(hl.dsp.window.tag({ tag = "-minimized_ws_" .. origin, window = window }))
+local function restore_minimized()
+    local active_ws = hl.get_active_workspace()
+    if not active_ws then return end
+    local origin_tag = "minimized_ws_" .. tostring(active_ws.id)
+    local candidates = {}
+    for _, window in ipairs(hl.get_windows({ tag = "minimized" })) do
+        for _, tag in pairs(window_tags(window)) do
+            if tag == origin_tag then
+                candidates[#candidates + 1] = window
+                break
             end
         end
-    else
-        local window = hl.get_active_window()
-        local workspace = window and window.workspace
-        if not window or not workspace then return end
-
-        hl.dispatch(hl.dsp.window.tag({ tag = "+minimized", window = window }))
-        hl.dispatch(hl.dsp.window.tag({ tag = "+minimized_ws_" .. workspace.id, window = window }))
-        hl.dispatch(hl.dsp.window.move({
-            workspace = "special:minimized",
-            follow = false
-        }))
     end
+    if #candidates == 0 then return end
+    local window = candidates[#candidates]
+    hl.dispatch(hl.dsp.window.move({
+        workspace = active_ws.id,
+        window = window
+    }))
+    hl.dispatch(hl.dsp.window.tag({ tag = "-minimized", window = window }))
+    hl.dispatch(hl.dsp.window.tag({ tag = "-" .. origin_tag, window = window }))
+    hl.dispatch(hl.dsp.focus({ window = window }))
+end
+
+_G.restore_minimized = restore_minimized
+
+-- Ocultar ventana activa en el workspace actual
+hl.bind(mainMod .. " + B", function()
+    local window = hl.get_active_window()
+    local workspace = window and window.workspace
+    if not window or not workspace then return end
+
+    hl.dispatch(hl.dsp.window.tag({ tag = "+minimized", window = window }))
+    hl.dispatch(hl.dsp.window.tag({ tag = "+minimized_ws_" .. workspace.id, window = window }))
+    hl.dispatch(hl.dsp.window.move({
+        workspace = "special:minimized",
+        follow = false
+    }))
 end)
+
+-- Restaurar ventana oculta del workspace actual (LIFO)
+hl.bind(mainMod .. " + ALT + B", restore_minimized)
 
 -- Arrastrar / redimensionar ventanas con el mouse
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })

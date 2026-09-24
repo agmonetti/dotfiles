@@ -106,7 +106,9 @@
     "exec": "python3 ${DOTFILES_DIR:-$HOME/Documentos/dotfiles}/scripts/minimized_windows.py",
     "interval": 1,
     "format": "{}",
-    "tooltip": false
+    "tooltip": false,
+    "signal": 8,
+    "on-click": "hyprctl eval 'restore_minimized()' && pkill -RTMIN+8 waybar"
   },
 
   "clock#date": {

@@ -13,7 +13,8 @@ Hyprland · Ventanas
 Super+C                  Cerrar ventana
 Super+V                  Alternar ventana flotante
 Super+↑                  Pantalla completa
-Super+B                  Minimizar/restaurar ventana
+Super+B                  Ocultar ventana activa
+Super+Alt+B              Restaurar ventana oculta (o clic en Waybar)
 Super + arrastrar izq.   Mover ventana con el mouse
 Super + arrastrar der.   Redimensionar ventana con el mouse
 
