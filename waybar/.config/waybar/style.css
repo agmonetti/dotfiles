@@ -121,6 +121,11 @@ window#waybar {
     margin-right: 6px;
 }
 
+#custom-minimized {
+    margin-right: 6px;
+    padding-right: 2px;
+}
+
 #custom-screenrecording-indicator.active {
     color: #a55555;
 }

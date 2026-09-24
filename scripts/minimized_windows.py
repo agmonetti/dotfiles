@@ -19,7 +19,9 @@ def render(workspace_id, clients):
         tags = client.get("tags", [])
         if "minimized" in tags and origin_tag in tags:
             icons.append(ICONS.get(client.get("class", "").lower(), FALLBACK))
-    return " ".join(icons)
+    if not icons:
+        return ""
+    return " ".join(icons) + " "
 
 
 def main():
