@@ -8,6 +8,9 @@ recomendado desde Hyprland 0.55 — hyprlang quedó deprecado).
 - **Hyprland 0.55+** con config en **Lua** (`hyprland.lua` + módulos en `conf.d/`).
 - Waybar, Mako, Kitty, Rofi, Yazi, Micro, Zsh + Powerlevel10k.
 - Scripts de wallpapers (selector con Rofi), volumen, pomodoro y capturas.
+- Waybar adapta el color del texto al wallpaper; `SUPER + SHIFT + W` alterna
+  un override manual persistido en `~/.local/state/waybar-theme`. El último
+  color calculado también se restaura al iniciar la sesión.
 - Instalación reproducible con GNU Stow y un `setup.sh` interactivo.
 
 ## Requisitos

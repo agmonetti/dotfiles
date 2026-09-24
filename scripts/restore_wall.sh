@@ -14,11 +14,17 @@ fi
 
 [[ -z "$wall" || ! -f "$wall" ]] && exit 0
 
-# Esperar a que hyprpaper esté listo (máx 5s)
-for _i in 1 2 3 4 5; do hyprctl hyprpaper listloaded 2>/dev/null && break; sleep 1; done
-hyprctl hyprpaper preload "$wall"
+# Aplicar el fondo cuando hyprpaper acepte comandos (máx. 5 s).
 for m in $(hyprctl monitors -j | jq -r '.[].name'); do
-    hyprctl hyprpaper wallpaper "$m,$wall"
+    applied=0
+    for _i in {1..50}; do
+        if hyprctl hyprpaper wallpaper "$m,$wall" >/dev/null 2>&1; then
+            applied=1
+            break
+        fi
+        sleep 0.1
+    done
+    (( applied == 1 )) || exit 1
 done
 
 # Color adaptativo de Waybar según el wallpaper restaurado

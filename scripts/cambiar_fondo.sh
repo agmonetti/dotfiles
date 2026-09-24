@@ -80,4 +80,4 @@ echo "$wall" > "$HOME/.cache/last_wallpaper"
 hyprctl hyprpaper unload unused
 
 # Color adaptativo de Waybar según el nuevo wallpaper
-"$DOTFILES_DIR/scripts/waybar-adaptive.sh"
+"$DOTFILES_DIR/scripts/waybar-adaptive.sh" auto
