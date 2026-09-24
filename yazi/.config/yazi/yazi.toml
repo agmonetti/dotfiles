@@ -1,12 +1,12 @@
 [opener]
 
 pdf = [
-  { run = 'zen-browser "$@"', desc = "Zen Browser" },
-  { run = 'onlyoffice-desktopeditors "$@"', desc = "OnlyOffice" }
+  { run = 'zen-browser "%s"', orphan = true, desc = "Zen Browser" },
+  { run = 'onlyoffice-desktopeditors "%s"', orphan = true, desc = "OnlyOffice" }
 ]
 
 micro = [
-  { run = 'micro "$@"', block = true, desc = "Micro Editor" }
+  { run = 'micro "%s"', block = true, desc = "Micro Editor" }
 ]
 
 [open]
