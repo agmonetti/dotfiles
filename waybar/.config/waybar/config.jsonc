@@ -13,7 +13,8 @@
   // ======================================================
   "modules-left": [
      "hyprland/workspaces",
-     "clock#time"
+     "clock#time",
+     "custom/minimized"
   ],
 
   "modules-center": [
@@ -98,6 +99,13 @@
 
   "clock#time": {
     "format": " Hora: {:%H:%M}",
+    "tooltip": false
+  },
+
+  "custom/minimized": {
+    "exec": "python3 ${DOTFILES_DIR:-$HOME/Documentos/dotfiles}/scripts/minimized_windows.py",
+    "interval": 1,
+    "format": "{}",
     "tooltip": false
   },
 

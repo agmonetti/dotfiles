@@ -20,6 +20,47 @@ hl.bind(mainMod .. " + C",    hl.dsp.window.close())
 hl.bind(mainMod .. " + V",    hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + up",   hl.dsp.window.fullscreen({ mode = "fullscreen" }))
 hl.bind(mainMod .. " + M",    hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"))
+-- Minimizar y restaurar la ventana
+local function window_tags(window)
+    local tags = window.tags
+    if type(tags) == "table" then return tags end
+    local values = {}
+    for tag in (tags or ""):gmatch("[^,%s]+") do
+        values[#values + 1] = tag
+    end
+    return values
+end
+
+hl.bind(mainMod .. " + B", function()
+    if hl.get_workspace("special:minimized") then
+        for _, window in ipairs(hl.get_windows({ tag = "minimized" })) do
+            local origin
+            for _, tag in pairs(window_tags(window)) do
+                origin = tag:match("^minimized_ws_(%-?%d+)$") or origin
+            end
+
+            hl.dispatch(hl.dsp.window.move({
+                workspace = origin or hl.get_active_workspace(),
+                window = window
+            }))
+            hl.dispatch(hl.dsp.window.tag({ tag = "-minimized", window = window }))
+            if origin then
+                hl.dispatch(hl.dsp.window.tag({ tag = "-minimized_ws_" .. origin, window = window }))
+            end
+        end
+    else
+        local window = hl.get_active_window()
+        local workspace = window and window.workspace
+        if not window or not workspace then return end
+
+        hl.dispatch(hl.dsp.window.tag({ tag = "+minimized", window = window }))
+        hl.dispatch(hl.dsp.window.tag({ tag = "+minimized_ws_" .. workspace.id, window = window }))
+        hl.dispatch(hl.dsp.window.move({
+            workspace = "special:minimized",
+            follow = false
+        }))
+    end
+end)
 
 -- Arrastrar / redimensionar ventanas con el mouse
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
