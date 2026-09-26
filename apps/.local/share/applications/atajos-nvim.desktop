@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Atajos de Neovim
+Comment=Cheatsheet completo de Neovim y LazyVim
+Exec=sh -c "$HOME/Documentos/dotfiles/scripts/atajos-nvim.sh"
+Terminal=false
+Categories=Utility;Development;
+Keywords=atajos;teclado;neovim;nvim;lazyvim;cheatsheet;

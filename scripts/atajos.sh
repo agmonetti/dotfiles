@@ -8,6 +8,8 @@ Super+Q                 Abrir Kitty
 Super+E                 Abrir Yazi
 Ctrl+Space              Abrir lanzador de aplicaciones (Rofi)
 Super+Tab               Mostrar ventanas
+Super+Shift+N           Atajos de Neovim
+Super+Shift+'           Atajos de Hyprland y Kitty
 
 Hyprland · Ventanas
 Super+C                  Cerrar ventana
