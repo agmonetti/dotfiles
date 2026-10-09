@@ -8,7 +8,8 @@ hl.env("DOTFILES_DIR", dotfiles)
 
 hl.on("hyprland.start", function()
     -- Carga los plugins habilitados con hyprpm (ej. Hyprspace).
-    hl.exec_cmd("hyprpm reload -n")
+    -- Sin -n para que no salga la notificación de "plugins loaded" al arrancar.
+    hl.exec_cmd("hyprpm reload")
     hl.exec_cmd("mako")
     hl.exec_cmd("waybar")
     hl.exec_cmd("hyprpaper")
