@@ -7,6 +7,8 @@ hl.env("GTK_THEME", "Adwaita:dark")
 hl.env("DOTFILES_DIR", dotfiles)
 
 hl.on("hyprland.start", function()
+    -- Carga los plugins habilitados con hyprpm (ej. Hyprspace).
+    hl.exec_cmd("hyprpm reload -n")
     hl.exec_cmd("mako")
     hl.exec_cmd("waybar")
     hl.exec_cmd("hyprpaper")

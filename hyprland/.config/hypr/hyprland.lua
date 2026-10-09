@@ -12,3 +12,9 @@ require("./conf.d/appearance")
 require("./conf.d/binds")
 require("./conf.d/autostart")
 require("./conf.d/rules")
+
+-- Config de plugins: se aplica al final porque hyprpm los carga después del
+-- primer parseo y recién ahí existen sus claves en hl.config().
+if hl.plugin.overview then
+    require("./conf.d/overview")
+end

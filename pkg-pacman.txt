@@ -4,6 +4,7 @@ hyprland
 hypridle
 hyprlock
 hyprpaper
+hyprpm
 hyprshot
 hyprpolkitagent
 xdg-desktop-portal-hyprland
